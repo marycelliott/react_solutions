@@ -1,1 +1,14 @@
 solutions/
+state-management/navbar-context/navbar-context.zip
+api-routing/luke-apiwalker/luke-apiwalker.zip
+api-routing/routing-practice/routing-practice.zip
+components/alltogether.zip
+components/inversion.zip
+components/propitup.zip
+react-fundamentals/first-jsx.zip
+state-management/box-generator.zip
+state-management/more-forms/more-forms.zip
+/node_modules
+react-fundamentals/first-jsx/node_modules/
+state-management/more-forms.zip
+/yarn.lock

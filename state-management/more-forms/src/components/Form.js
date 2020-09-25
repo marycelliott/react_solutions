@@ -1,41 +1,76 @@
-import React from 'react';
+import React from "react";
 
-const alignCenter = {
-    alignSelf: 'center'
-}
+// I can destructure props right in the component's arrow function
+const Form = ({ state, setState }) => {
+  const regex = new RegExp(/^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$/);
+  const onChange = (e) => {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-const Form = ({state,setState}) => {
-    const onChange = e => {
-        setState({
-            ...state,
-            [e.target.name]: e.target.value
-        })
-        console.log(state);
-        console.log( typeof state);
-    }
+  return (
+    <form>
+      <div className="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          className="form-control form-control-sm"
+          type="text"
+          name="firstName"
+          onChange={onChange}
+        />
+        {state.firstName < 1 ? (
+          <span className="text-danger small">First Name cannot be blank.</span>
+        ) : null}
+      </div>
+      <div className="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          className="form-control form-control-sm"
+          type="text"
+          name="lastName"
+          onChange={onChange}
+        />
+        {state.lastName < 1 ? (
+          <span className="text-danger small">Last Name cannot be blank.</span>
+        ) : null}
+      </div>
+      <div className="form-group">
+        <label for="email">Email</label>
+        <input
+          className="form-control form-control-sm"
+          type="text"
+          name="email"
+          onChange={onChange}
+        />
+        {!state.email.match(regex) ? (
+          <span className="text-danger small">Email address is invalid.</span>
+        ) : null}
+      </div>
+      <div className="form-group">
+        <label for="password">Password</label>
+        <input
+          className="form-control form-control-sm"
+          type="password"
+          name="password"
+          onChange={onChange}
+        />
+      </div>
+      <div className="form-group">
+        <label for="confPassword">Confirm Password</label>
+        <input
+          className="form-control form-control-sm"
+          type="password"
+          name="confPassword"
+          onChange={onChange}
+        />
+        {state.password !== state.confPassword ? (
+          <span className="text-danger small">Password don't match.</span>
+        ) : null}
+      </div>
+    </form>
+  );
+};
 
-    return (
-        <form className="w-1/3 flex flex-col text-center" style={alignCenter}>
-            {Object.keys(state).map(field => (
-                <div className>
-                    <div className="md:flex md:items-center bg-gray-400 p-4 rounded border-2 border-gray-500">
-                    <div className="md:w-1/3">
-                        <label className="block font-bold md:text-left mb-1 md:mb-0 pr-4" for="inline-full-name">
-                            {field}
-                        </label>
-                    </div>
-                    <div className="md:w-2/3">
-                        {field === "password" || field === "confPassword" ?<input className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' type="password" name={field} onChange={onChange}/>:<input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name={field} onChange={onChange}/>}
-                    </div>    
-                    </div>
-                    {(field === "firstName" || field === "lastName") && state[field].length <1 ? <span className="text-red-700 text-sm">{field} cannot be blank.</span>:null}
-                    {field === "password"  && state["password"] !== state['confPassword'] ? <span className="text-red-700 text-sm">Passwords must match.</span>:null}
-
-                </div>
-                )
-            )}
-        </form>
-    );
-}
- 
 export default Form;

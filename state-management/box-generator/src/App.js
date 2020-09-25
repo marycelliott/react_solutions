@@ -6,7 +6,7 @@ import Input from "./components/Input";
 
 function App() {
   const [box, setBox] = useState({
-    colors: []
+    colors: [],
   });
 
   return (
@@ -15,7 +15,7 @@ function App() {
         <h1 className="display-4 my-3">Box Generator</h1>
         <Input setBox={setBox} box={box} />
         <div className="row">
-          {box.colors.map(color => (
+          {box.colors.map((color) => (
             <Box color={color} />
           ))}
         </div>

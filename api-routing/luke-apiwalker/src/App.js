@@ -1,26 +1,20 @@
-import React, { useState } from 'react';
-import Navbar from './components/Navbar';
-import Result from './components/Result';
-import Context from './context/APIContext';
-import NotFound from './components/NotFound';
-import { Router } from '@reach/router';
-import './App.css';
-
+import React, { useState } from "react";
+import Navbar from "./components/Navbar";
+import Result from "./components/Result";
+import NotFound from "./components/NotFound";
+import { Router } from "@reach/router";
+import "./App.css";
 
 function App() {
-  const [state, setState] = useState({
-    result: {}
-  })
+  const [result, setResult] = useState(null);
 
   return (
     <div className="App">
-      <Context.Provider value={{state,setState}}>
-        <Navbar />
-        <Router preserverScrollPosition={false}>
-          <Result path='/:id' />
-          <NotFound path='/obiwan' />
-        </Router>
-      </Context.Provider>
+      <Navbar setResult={setResult} />
+      <Router>
+        <Result path="/:id" result={result} />
+        <NotFound path="/obiwan" />
+      </Router>
     </div>
   );
 }
