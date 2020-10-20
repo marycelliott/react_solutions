@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import TabsContext from "./context/Context";
+import Display from "./components/Display";
+import Tab from "./components/Tab";
+
+import "./App.css";
 
 function App() {
+  const [state, setState] = useState({
+    tabs: [
+      "content is showing here",
+      "content is showing here",
+      "content is showing here",
+      "content is showing here",
+      "content is showing here"
+    ],
+    active: null
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <TabsContext.Provider value={{ state, setState }}>
+        <Tab />
+        <Display />
+      </TabsContext.Provider>
     </div>
   );
 }

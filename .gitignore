@@ -12,3 +12,6 @@ state-management/more-forms/more-forms.zip
 react-fundamentals/first-jsx/node_modules/
 state-management/more-forms.zip
 /yarn.lock
+/auth
+state-management/.DS_Store
+.DS_Store
