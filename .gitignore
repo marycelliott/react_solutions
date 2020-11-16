@@ -15,3 +15,8 @@ state-management/more-forms.zip
 /auth
 state-management/.DS_Store
 .DS_Store
+node_modules/
+state-management/tabs/tabs.zip
+full-mern/product-manager/client/yarn.lock
+full-mern/product-manager/client/package-lock.json
+full-mern/product-manager/server/package-lock.json
